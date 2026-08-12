@@ -42,7 +42,12 @@ def cmdloop(tree: Tree) -> None:
         split = shlex.split(command)
 
         if split[0] not in tree:
-            command_not_found(split[0])
+            # handle uncategorized command functions defined in the any module
+            if split[0] in tree["any"]:
+                tree["any"][split[0]]()
+            else:
+                command_not_found(split[0])
+
             continue
 
         if len(split) == 1:
