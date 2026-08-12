@@ -1,0 +1,1 @@
+Python CLI studying app designed for simplicity and speed.
