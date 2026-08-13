@@ -7,7 +7,9 @@ authors = [
     { name = "garden-yardripper", email = "gardenyardripper@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "prompt-toolkit>=3.0.53",
+]
 
 [tool.ruff]
 line-length = 120
