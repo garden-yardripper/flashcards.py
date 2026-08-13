@@ -4,6 +4,7 @@ import shlex
 from types import FunctionType
 
 from . import commands
+from .utils.string_templates import command_not_found
 
 type Tree = dict[str, dict[str, FunctionType]]
 
@@ -19,13 +20,6 @@ def build_command_tree() -> Tree:
         }
 
     return tree
-
-
-def command_not_found(input: str, *, is_module: bool = True):
-    if is_module:
-        print(f"ERROR: Command '{input}' does not exist.")
-    else:
-        print(f"ERROR: Subcommand '{input}' does not exist.")
 
 
 def cmdloop(tree: Tree) -> None:
