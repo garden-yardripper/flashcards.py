@@ -40,13 +40,14 @@ def cmdloop(tree: Tree) -> None:
             continue
 
         split = shlex.split(command)
+        module = split[0]
 
-        if split[0] not in tree:
+        if module not in tree:
             # handle uncategorized command functions defined in the any module
-            if split[0] in tree["any"]:
-                tree["any"][split[0]]()
+            if module in tree["any"]:
+                tree["any"][module]()
             else:
-                command_not_found(split[0])
+                command_not_found(module)
 
             continue
 
@@ -55,11 +56,11 @@ def cmdloop(tree: Tree) -> None:
             pass
 
         if len(split) == 2:
-            if split[1] in tree[split[0]]:
-                # dispatch logic here
-                pass
+            subcmd = split[1]
+            if subcmd in tree[module]:
+                tree[module][subcmd]()
             else:
-                command_not_found(split[1], is_module=False)
+                command_not_found(subcmd, is_module=False)
 
 
 if __name__ == "__main__":
