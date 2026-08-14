@@ -1,9 +1,11 @@
 import inspect
 import os
 import shlex
-from types import FunctionType
 
-from . import Tree, commands
+from prompt_toolkit import print_formatted_text as print
+from prompt_toolkit.formatted_text import HTML
+
+from . import Tree, commands, help
 from .utils.string_templates import command_not_found
 
 
@@ -49,8 +51,7 @@ def cmdloop(tree: Tree) -> None:
             continue
 
         if len(split) == 1:
-            # help logic here
-            pass
+            print(HTML(help.module_help(module, tree)))
 
         if len(split) == 2:
             subcmd = split[1]
