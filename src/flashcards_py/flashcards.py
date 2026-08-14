@@ -29,7 +29,12 @@ def cmdloop(tree: Tree) -> None:
     print(intro)
 
     while True:
-        command = input(prompt)
+        try:
+            command = input(prompt)
+        except EOFError:
+            print()
+            break
+
         if not command:
             continue
 
@@ -63,4 +68,5 @@ if __name__ == "__main__":
     try:
         cmdloop(tree)
     except KeyboardInterrupt:
+        print()
         pass
