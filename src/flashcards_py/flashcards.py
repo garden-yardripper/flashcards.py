@@ -3,10 +3,8 @@ import os
 import shlex
 from types import FunctionType
 
-from . import commands
+from . import Tree, commands
 from .utils.string_templates import command_not_found
-
-type Tree = dict[str, dict[str, FunctionType]]
 
 
 def build_command_tree() -> Tree:
