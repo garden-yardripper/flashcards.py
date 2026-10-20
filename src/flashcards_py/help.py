@@ -40,9 +40,11 @@ def module_help(module_name: str, tree: "Tree") -> str:
         st.command_not_found(module_name)
         return ""
 
-    from . import commands
+    from . import commands as commands_module
 
-    module_name, module = next((n, m) for n, m in inspect.getmembers(commands, inspect.ismodule) if n == module_name)
+    module_name, module = next(
+        (n, m) for n, m in inspect.getmembers(commands_module, inspect.ismodule) if n == module_name
+    )
     module_doc = _get_first_line(module)
 
     commands = {
